@@ -8,7 +8,7 @@ trigger:
 pool:
   name: Default
   demands:
-    - agent.name -sahanabey
+    - agent.name -equals  sahanabey
 
 variables:
   buildConfiguration: 'Release'
@@ -49,17 +49,17 @@ steps:
     projects: '**/*.csproj'
 
   # Publish the project to a zip folder
-- task: DotNetCoreCLI@2
-  displayName: 'Publish project'
-  inputs:
-    command: 'publish'
-    arguments: '--no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    projects: '**/*.csproj'
+#- task: DotNetCoreCLI@2
+#  displayName: 'Publish project'
+ # inputs:
+ #   command: 'publish'
+ #   arguments: '--no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+ #   projects: '**/*.csproj'
 
 # Deploy to Azure App Service
-- task: AzureWebApp@1
-  displayName: 'Deploy to Azure App Service'
-  inputs:
-    azureSubscription: 'BksAzureConnection'
-    appName: 'SpaceGameByBks'
-    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+#- task: AzureWebApp@1
+ # displayName: 'Deploy to Azure App Service'
+ # inputs:
+  #  azureSubscription: 'BksAzureConnection'
+  #  appName: 'SpaceGameByBks'
+   # package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
